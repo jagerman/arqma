@@ -1,19 +1,19 @@
 [Unit]
-Description=Monero Full Node
+Description=Arqma Full Node
 After=network.target
 
 [Service]
-User=monero
-Group=monero
+User=arqma
+Group=arqma
 WorkingDirectory=~
-RuntimeDirectory=monero
+RuntimeDirectory=arqma
 
 # Clearnet config
 #
 Type=forking
-PIDFile=/run/monero/monerod.pid
-ExecStart=/usr/bin/monerod --config-file /etc/monerod.conf \
-    --detach --pidfile /run/monero/monerod.pid
+PIDFile=/run/arqma/arqmad.pid
+ExecStart=/usr/bin/arqmad --config-file /etc/arqmad.conf \
+    --detach --pidfile /run/arqma/arqmad.pid
 
 # Tor config
 #
@@ -27,7 +27,7 @@ ExecStart=/usr/bin/monerod --config-file /etc/monerod.conf \
 ## host in the LAN, VPN, etc, the RPC must bind to 0.0.0.0, but
 ## by default torsocks only allows binding to localhost.
 #Environment=TORSOCKS_ALLOW_INBOUND=1
-#ExecStart=/usr/bin/torsocks /usr/bin/monerod --config-file /etc/monerod.conf \
+#ExecStart=/usr/bin/torsocks /usr/bin/arqmad --config-file /etc/arqmad.conf \
 #    --non-interactive
 
 Restart=always
