@@ -101,7 +101,8 @@ invokes cmake commands as needed.
 * Change to the root of the source code directory and build:
 
         cd arqma
-        make
+        make cmake-release && cd build/release && make
+	
 
     *Optional*: If your machine has several cores and enough memory, enable
     parallel build by running `make -j<number of threads>` instead of `make`. For
