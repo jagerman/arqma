@@ -33,7 +33,7 @@
 #include "net/http_client.h"
 #include <string>
 
-namespace Arqma {
+namespace Monero {
 
 class WalletManagerImpl : public WalletManager
 {
@@ -91,4 +91,4 @@ private:
 
 } // namespace
 
-namespace Arqma = Arqma;
+namespace Bitmonero = Monero;
