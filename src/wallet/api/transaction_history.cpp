@@ -42,7 +42,7 @@
 
 using namespace epee;
 
-namespace Arqma {
+namespace Monero {
 
 TransactionHistory::~TransactionHistory() {}
 
@@ -245,4 +245,4 @@ void TransactionHistoryImpl::refresh()
 
 } // namespace
 
-namespace Arqma = Arqma;
+namespace Bitmonero = Monero;
