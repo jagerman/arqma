@@ -37,7 +37,7 @@
 
 #include <vector>
 
-namespace Arqma {
+namespace Monero {
   
 AddressBook::~AddressBook() {}
   
@@ -178,4 +178,4 @@ AddressBookImpl::~AddressBookImpl()
 
 } // namespace
 
-namespace Arqma = Arqma;
+namespace Bitmonero = Monero;
