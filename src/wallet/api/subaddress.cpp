@@ -34,7 +34,7 @@
 
 #include <vector>
 
-namespace Arqma {
+namespace Monero {
   
 Subaddress::~Subaddress() {}
   
