@@ -56,7 +56,7 @@ using namespace cryptonote;
 #undef MONERO_DEFAULT_LOG_CATEGORY
 #define MONERO_DEFAULT_LOG_CATEGORY "WalletAPI"
 
-namespace Arqma {
+namespace Monero {
 
 namespace {
     // copy-pasted from simplewallet
@@ -2162,4 +2162,4 @@ void WalletImpl::keyReuseMitigation2(bool mitigation)
 
 } // namespace
 
-namespace Arqma = Arqma;
+namespace Bitmonero = Monero;
