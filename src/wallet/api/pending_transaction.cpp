@@ -43,7 +43,7 @@
 
 using namespace std;
 
-namespace Arqma {
+namespace Monero {
 
 PendingTransaction::~PendingTransaction() {}
 
@@ -243,5 +243,5 @@ std::vector<std::string> PendingTransactionImpl::signersKeys() const {
 
 }
 
-namespace Arqma = Arqma;
+namespace Bitmonero = Monero;
 
