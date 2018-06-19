@@ -35,7 +35,7 @@
 #include <vector>
 
 
-namespace Arqma {
+namespace Monero {
 
 class WalletImpl;
 class UnsignedTransactionImpl : public UnsignedTransaction
@@ -73,4 +73,4 @@ private:
 
 }
 
-namespace Arqma = Arqma;
+namespace Bitmonero = Monero;
