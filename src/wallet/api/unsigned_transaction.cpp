@@ -42,7 +42,7 @@
 
 using namespace std;
 
-namespace Arqma {
+namespace Monero {
 
 UnsignedTransaction::~UnsignedTransaction() {}
 
@@ -317,5 +317,5 @@ uint64_t UnsignedTransactionImpl::minMixinCount() const
 
 } // namespace
 
-namespace Arqma = Arqma;
+namespace Bitmonero = Monero;
 
