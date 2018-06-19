@@ -33,7 +33,7 @@
 
 using namespace std;
 
-namespace Arqma {
+namespace Monero {
 
 TransactionInfo::~TransactionInfo() {}
 
@@ -140,4 +140,4 @@ uint64_t TransactionInfoImpl::unlockTime() const
 
 } // namespace
 
-namespace Arqma = Arqma;
+namespace Bitmonero = Monero;
