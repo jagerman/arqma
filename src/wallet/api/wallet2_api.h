@@ -39,7 +39,7 @@
 #include <iostream>
 
 //  Public interface for libwallet library
-namespace Arqma {
+namespace Monero {
 
 enum NetworkType : uint8_t {
     MAINNET = 0,
@@ -1111,5 +1111,5 @@ struct WalletManagerFactory
 
 }
 
-namespace Arqma = Arqma;
+namespace Bitmonero = Monero;
 
