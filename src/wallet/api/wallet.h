@@ -40,7 +40,7 @@
 #include <boost/thread/condition_variable.hpp>
 
 
-namespace Arqma {
+namespace Monero {
 class TransactionHistoryImpl;
 class PendingTransactionImpl;
 class UnsignedTransactionImpl;
@@ -242,7 +242,7 @@ private:
 
 } // namespace
 
-namespace Arqma = Arqma;
+namespace Bitmonero = Monero;
 
 #endif
 
