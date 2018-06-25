@@ -157,7 +157,7 @@ namespace cryptonote
       out.amount = block_reward;
       //out.target = tk;
       tx.vout.push_back(out);
-//   }
+    }
 
 //    CHECK_AND_ASSERT_MES(summary_amounts == block_reward, false, "Failed to construct miner tx, summary_amounts = " << summary_amounts << " not equal block_reward = " << block_reward);
 
