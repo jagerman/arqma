@@ -1,6 +1,6 @@
 #define DEF_MONERO_VERSION_TAG "@VERSIONTAG@"
-#define DEF_MONERO_VERSION "0.1.1.0"
-#define DEF_MONERO_RELEASE_NAME "mini.ARQ"
+#define DEF_MONERO_VERSION "0.1.1.1"
+#define DEF_MONERO_RELEASE_NAME "Alpha Centauri"
 #define DEF_MONERO_VERSION_FULL DEF_MONERO_VERSION 
 
 #include "version.h"
