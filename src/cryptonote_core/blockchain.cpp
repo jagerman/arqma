@@ -400,7 +400,7 @@ bool Blockchain::init(BlockchainDB* db, const network_type nettype, bool offline
   MINFO("Blockchain initialized. last block: " << m_db->height() - 1 << ", " << epee::misc_utils::get_time_interval_string(timestamp_diff) << " time ago, current difficulty: " << get_difficulty_for_next_block());
   m_db->block_txn_stop();
 
-/*  uint64_t num_popped_blocks = 0;
+  uint64_t num_popped_blocks = 0;
   while (true)
   {
     const uint64_t top_height = m_db->height() - 1;
@@ -446,7 +446,7 @@ bool Blockchain::init(BlockchainDB* db, const network_type nettype, bool offline
     m_hardfork->reorganize_from_chain_height(get_current_blockchain_height());
     m_tx_pool.on_blockchain_dec(m_db->height()-1, get_tail_id());
   }
-*/
+
   update_next_cumulative_size_limit();
   return true;
 }
