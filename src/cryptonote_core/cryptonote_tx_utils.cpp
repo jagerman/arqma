@@ -112,7 +112,7 @@ namespace cryptonote
     // masks, to they can be used as rct inputs.
     if (hard_fork_version >= 2 && hard_fork_version < 4) {
       block_reward = block_reward - block_reward % ::config::BASE_REWARD_CLAMP_THRESHOLD;
-    } */
+    } 
 
     std::vector<uint64_t> out_amounts;
     decompose_amount_into_digits(block_reward, hard_fork_version >= 2 ? 0 : ::config::DEFAULT_DUST_THRESHOLD,
@@ -140,7 +140,7 @@ namespace cryptonote
 
     uint64_t summary_amounts = 0;
     for (size_t no = 0; no < out_amounts.size(); no++)
-    { 
+    { */
       crypto::key_derivation derivation = AUTO_VAL_INIT(derivation);;
       crypto::public_key out_eph_public_key = AUTO_VAL_INIT(out_eph_public_key);
       bool r = crypto::generate_key_derivation(miner_address.m_view_public_key, txkey.sec, derivation);
@@ -153,11 +153,11 @@ namespace cryptonote
       tk.key = out_eph_public_key;
 
       tx_out out;
-      summary_amounts += out.amount = out_amounts[no];
+      //summary_amounts += out.amount = out_amounts[no];
       out.amount = block_reward;
-      //out.target = tk;
+      out.target = tk;
       tx.vout.push_back(out);
-    }
+   // }
 
 //    CHECK_AND_ASSERT_MES(summary_amounts == block_reward, false, "Failed to construct miner tx, summary_amounts = " << summary_amounts << " not equal block_reward = " << block_reward);
 
