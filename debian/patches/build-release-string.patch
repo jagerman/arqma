@@ -1,0 +1,32 @@
+Description: Use release string in version
+ Fixes the deb build to use the release string (rather than "unknown").
+ .
+ arqma (0.1.2.5-1) unstable; urgency=medium
+ .
+   * Initial release.
+Author: Jason Rhinelander <jason@imaginary.ca>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: <YYYY-MM-DD>
+
+--- arqma-0.1.2.5.orig/cmake/Version.cmake
++++ arqma-0.1.2.5/cmake/Version.cmake
+@@ -32,7 +32,7 @@ function (write_static_version_header ha
+ endfunction ()
+ 
+ find_package(Git QUIET)
+-if ("$Format:$" STREQUAL "")
++if ("" STREQUAL "")
+   # We're in a tarball; use hard-coded variables.
+   write_static_version_header("release")
+ elseif (GIT_FOUND OR Git_FOUND)

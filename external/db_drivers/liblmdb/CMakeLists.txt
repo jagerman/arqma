@@ -63,3 +63,8 @@ if (BUILD_GUI_DEPS)
         LIBRARY DESTINATION ${lib_folder})
 endif()
 set_property(TARGET lmdb APPEND PROPERTY COMPILE_FLAGS "-fPIC")
+
+set_target_properties(lmdb PROPERTIES VERSION 0)
+install(TARGETS lmdb
+    ARCHIVE DESTINATION lib/${CMAKE_LIBRARY_ARCHITECTURE}/arqma
+    LIBRARY DESTINATION lib/${CMAKE_LIBRARY_ARCHITECTURE}/arqma)

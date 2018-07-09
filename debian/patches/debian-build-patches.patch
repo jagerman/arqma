@@ -1,0 +1,193 @@
+Description: Patches for building a deb
+ This patches various parts of the arqma build environment to properly build under a debian-based
+ multiarch system.  In particular, it puts libraries in a private library dir and disabled various
+ unneeded parts of the build.
+ .
+ arqma (0.1.2.5-1) unstable; urgency=medium
+ .
+   * Initial release.
+Author: Jason Rhinelander <jason@imaginary.ca>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: <YYYY-MM-DD>
+
+--- arqma-0.1.2.5.orig/external/CMakeLists.txt
++++ arqma-0.1.2.5/external/CMakeLists.txt
+@@ -37,20 +37,20 @@
+ 
+ find_package(Miniupnpc REQUIRED)
+ 
+-message(STATUS "Using in-tree miniupnpc")
++#message(STATUS "Using in-tree miniupnpc")
++#
++#add_subdirectory(miniupnp/miniupnpc)
++#
++#set_property(TARGET libminiupnpc-static PROPERTY FOLDER "external")
++#if(MSVC)
++#  set_property(TARGET libminiupnpc-static APPEND_STRING PROPERTY COMPILE_FLAGS " -wd4244 -wd4267")
++#elseif(NOT MSVC)
++#  set_property(TARGET libminiupnpc-static APPEND_STRING PROPERTY COMPILE_FLAGS " -Wno-undef -Wno-unused-result -Wno-unused-value")
++#endif()
+ 
+-add_subdirectory(miniupnp/miniupnpc)
++set(UPNP_LIBRARIES "${MINIUPNP_LIBRARY}" PARENT_SCOPE)
+ 
+-set_property(TARGET libminiupnpc-static PROPERTY FOLDER "external")
+-if(MSVC)
+-  set_property(TARGET libminiupnpc-static APPEND_STRING PROPERTY COMPILE_FLAGS " -wd4244 -wd4267")
+-elseif(NOT MSVC)
+-  set_property(TARGET libminiupnpc-static APPEND_STRING PROPERTY COMPILE_FLAGS " -Wno-undef -Wno-unused-result -Wno-unused-value")
+-endif()
+-
+-set(UPNP_LIBRARIES "libminiupnpc-static" PARENT_SCOPE)
+-
+-find_package(Unbound)
++find_package(Unbound REQUIRED)
+ 
+ if(NOT UNBOUND_INCLUDE_DIR OR STATIC)
+   # NOTE: If STATIC is true, CMAKE_FIND_LIBRARY_SUFFIXES has been reordered.
+--- arqma-0.1.2.5.orig/external/db_drivers/liblmdb/CMakeLists.txt
++++ arqma-0.1.2.5/external/db_drivers/liblmdb/CMakeLists.txt
+@@ -63,3 +63,8 @@ if (BUILD_GUI_DEPS)
+         LIBRARY DESTINATION ${lib_folder})
+ endif()
+ set_property(TARGET lmdb APPEND PROPERTY COMPILE_FLAGS "-fPIC")
++
++set_target_properties(lmdb PROPERTIES VERSION 0)
++install(TARGETS lmdb
++    ARCHIVE DESTINATION lib/${CMAKE_LIBRARY_ARCHITECTURE}/arqma
++    LIBRARY DESTINATION lib/${CMAKE_LIBRARY_ARCHITECTURE}/arqma)
+--- arqma-0.1.2.5.orig/external/easylogging++/CMakeLists.txt
++++ arqma-0.1.2.5/external/easylogging++/CMakeLists.txt
+@@ -56,3 +56,7 @@ if (BUILD_GUI_DEPS)
+ endif()
+ set_property(TARGET easylogging APPEND PROPERTY COMPILE_FLAGS "-fPIC")
+ 
++set_target_properties(easylogging PROPERTIES VERSION 0)
++install(TARGETS easylogging
++    ARCHIVE DESTINATION lib/${CMAKE_LIBRARY_ARCHITECTURE}/arqma
++    LIBRARY DESTINATION lib/${CMAKE_LIBRARY_ARCHITECTURE}/arqma)
+--- arqma-0.1.2.5.orig/src/CMakeLists.txt
++++ arqma-0.1.2.5/src/CMakeLists.txt
+@@ -103,6 +103,12 @@ function (monero_add_library_with_deps)
+   set_property(TARGET "${MONERO_ADD_LIBRARY_NAME}" PROPERTY FOLDER "libs")
+   target_compile_definitions(${objlib}
+     PRIVATE $<TARGET_PROPERTY:${MONERO_ADD_LIBRARY_NAME},INTERFACE_COMPILE_DEFINITIONS>)
++
++  set_target_properties("${MONERO_ADD_LIBRARY_NAME}" PROPERTIES VERSION 0)
++  install(TARGETS "${MONERO_ADD_LIBRARY_NAME}"
++    ARCHIVE DESTINATION lib/${CMAKE_LIBRARY_ARCHITECTURE}/arqma
++    LIBRARY DESTINATION lib/${CMAKE_LIBRARY_ARCHITECTURE}/arqma)
++
+ endfunction ()
+ 
+ include(Version)
+--- arqma-0.1.2.5.orig/src/blockchain_db/CMakeLists.txt
++++ arqma-0.1.2.5/src/blockchain_db/CMakeLists.txt
+@@ -69,4 +69,5 @@ target_link_libraries(blockchain_db
+     ${Boost_FILESYSTEM_LIBRARY}
+     ${Boost_THREAD_LIBRARY}
+   PRIVATE
++    ${CMAKE_THREAD_LIBS_INIT}
+     ${EXTRA_LIBRARIES})
+--- arqma-0.1.2.5.orig/src/common/CMakeLists.txt
++++ arqma-0.1.2.5/src/common/CMakeLists.txt
+@@ -89,6 +89,7 @@ target_link_libraries(common
+     ${Boost_REGEX_LIBRARY}
+     ${Boost_CHRONO_LIBRARY}
+   PRIVATE
++    ${CMAKE_THREAD_LIBS_INIT}
+     ${OPENSSL_LIBRARIES}
+     ${EXTRA_LIBRARIES})
+ 
+--- arqma-0.1.2.5.orig/src/cryptonote_basic/CMakeLists.txt
++++ arqma-0.1.2.5/src/cryptonote_basic/CMakeLists.txt
+@@ -76,4 +76,5 @@ target_link_libraries(cryptonote_basic
+     ${Boost_SYSTEM_LIBRARY}
+     ${Boost_THREAD_LIBRARY}
+   PRIVATE
++    ${CMAKE_THREAD_LIBS_INIT}
+     ${EXTRA_LIBRARIES})
+--- arqma-0.1.2.5.orig/src/cryptonote_core/CMakeLists.txt
++++ arqma-0.1.2.5/src/cryptonote_core/CMakeLists.txt
+@@ -70,4 +70,5 @@ target_link_libraries(cryptonote_core
+     ${Boost_THREAD_LIBRARY}
+   PRIVATE
+     ${Blocks}
++    ${CMAKE_THREAD_LIBS_INIT}
+     ${EXTRA_LIBRARIES})
+--- arqma-0.1.2.5.orig/src/device/CMakeLists.txt
++++ arqma-0.1.2.5/src/device/CMakeLists.txt
+@@ -71,4 +71,5 @@ target_link_libraries(device
+     ${OPENSSL_CRYPTO_LIBRARIES}
+   PRIVATE
+     ${Blocks}
++    ${CMAKE_THREAD_LIBS_INIT}
+     ${EXTRA_LIBRARIES})
+--- arqma-0.1.2.5.orig/src/p2p/net_node.inl
++++ arqma-0.1.2.5/src/p2p/net_node.inl
+@@ -49,9 +49,9 @@
+ #include "storages/levin_abstract_invoke2.h"
+ #include "cryptonote_core/cryptonote_core.h"
+ 
+-#include <miniupnp/miniupnpc/miniupnpc.h>
+-#include <miniupnp/miniupnpc/upnpcommands.h>
+-#include <miniupnp/miniupnpc/upnperrors.h>
++#include <miniupnpc/miniupnpc.h>
++#include <miniupnpc/upnpcommands.h>
++#include <miniupnpc/upnperrors.h>
+ 
+ #undef MONERO_DEFAULT_LOG_CATEGORY
+ #define MONERO_DEFAULT_LOG_CATEGORY "net.p2p"
+--- arqma-0.1.2.5.orig/src/rpc/CMakeLists.txt
++++ arqma-0.1.2.5/src/rpc/CMakeLists.txt
+@@ -115,6 +115,7 @@ target_link_libraries(rpc
+     ${Boost_REGEX_LIBRARY}
+     ${Boost_THREAD_LIBRARY}
+   PRIVATE
++    ${CMAKE_THREAD_LIBS_INIT}
+     ${EXTRA_LIBRARIES})
+ 
+ target_link_libraries(daemon_messages
+@@ -136,6 +137,7 @@ target_link_libraries(daemon_rpc_server
+     ${Boost_SYSTEM_LIBRARY}
+     ${Boost_THREAD_LIBRARY}
+     ${ZMQ_LIB}
++    ${CMAKE_THREAD_LIBS_INIT}
+     ${EXTRA_LIBRARIES})
+ target_include_directories(daemon_rpc_server PUBLIC ${ZMQ_INCLUDE_PATH})
+ target_include_directories(obj_daemon_rpc_server PUBLIC ${ZMQ_INCLUDE_PATH})
+--- arqma-0.1.2.5.orig/src/wallet/CMakeLists.txt
++++ arqma-0.1.2.5/src/wallet/CMakeLists.txt
+@@ -65,6 +65,7 @@ target_link_libraries(wallet
+     ${Boost_THREAD_LIBRARY}
+     ${Boost_REGEX_LIBRARY}
+   PRIVATE
++    ${CMAKE_THREAD_LIBS_INIT}
+     ${EXTRA_LIBRARIES})
+ 
+ set(wallet_rpc_sources
+@@ -133,4 +134,4 @@ if (BUILD_GUI_DEPS)
+         ARCHIVE DESTINATION ${lib_folder})
+ endif()
+ 
+-add_subdirectory(api)
++#add_subdirectory(api)
+--- arqma-0.1.2.5.orig/src/wallet/api/CMakeLists.txt
++++ arqma-0.1.2.5/src/wallet/api/CMakeLists.txt
+@@ -89,4 +89,4 @@ else()
+ endif()
+ 
+ install(FILES ${wallet_api_headers}
+-    DESTINATION include/wallet/api)
++    DESTINATION include/arqma/api)

@@ -71,4 +71,5 @@ target_link_libraries(device
     ${OPENSSL_CRYPTO_LIBRARIES}
   PRIVATE
     ${Blocks}
+    ${CMAKE_THREAD_LIBS_INIT}
     ${EXTRA_LIBRARIES})

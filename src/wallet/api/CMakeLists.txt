@@ -89,4 +89,4 @@ else()
 endif()
 
 install(FILES ${wallet_api_headers}
-    DESTINATION include/wallet/api)
+    DESTINATION include/arqma/api)

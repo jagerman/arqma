@@ -65,6 +65,7 @@ target_link_libraries(wallet
     ${Boost_THREAD_LIBRARY}
     ${Boost_REGEX_LIBRARY}
   PRIVATE
+    ${CMAKE_THREAD_LIBS_INIT}
     ${EXTRA_LIBRARIES})
 
 set(wallet_rpc_sources
@@ -133,4 +134,4 @@ if (BUILD_GUI_DEPS)
         ARCHIVE DESTINATION ${lib_folder})
 endif()
 
-add_subdirectory(api)
+#add_subdirectory(api)

@@ -56,3 +56,7 @@ if (BUILD_GUI_DEPS)
 endif()
 set_property(TARGET easylogging APPEND PROPERTY COMPILE_FLAGS "-fPIC")
 
+set_target_properties(easylogging PROPERTIES VERSION 0)
+install(TARGETS easylogging
+    ARCHIVE DESTINATION lib/${CMAKE_LIBRARY_ARCHITECTURE}/arqma
+    LIBRARY DESTINATION lib/${CMAKE_LIBRARY_ARCHITECTURE}/arqma)

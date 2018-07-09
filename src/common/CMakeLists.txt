@@ -89,6 +89,7 @@ target_link_libraries(common
     ${Boost_REGEX_LIBRARY}
     ${Boost_CHRONO_LIBRARY}
   PRIVATE
+    ${CMAKE_THREAD_LIBS_INIT}
     ${OPENSSL_LIBRARIES}
     ${EXTRA_LIBRARIES})
 

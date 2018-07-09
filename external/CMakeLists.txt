@@ -37,20 +37,20 @@
 
 find_package(Miniupnpc REQUIRED)
 
-message(STATUS "Using in-tree miniupnpc")
+#message(STATUS "Using in-tree miniupnpc")
+#
+#add_subdirectory(miniupnp/miniupnpc)
+#
+#set_property(TARGET libminiupnpc-static PROPERTY FOLDER "external")
+#if(MSVC)
+#  set_property(TARGET libminiupnpc-static APPEND_STRING PROPERTY COMPILE_FLAGS " -wd4244 -wd4267")
+#elseif(NOT MSVC)
+#  set_property(TARGET libminiupnpc-static APPEND_STRING PROPERTY COMPILE_FLAGS " -Wno-undef -Wno-unused-result -Wno-unused-value")
+#endif()
 
-add_subdirectory(miniupnp/miniupnpc)
+set(UPNP_LIBRARIES "${MINIUPNP_LIBRARY}" PARENT_SCOPE)
 
-set_property(TARGET libminiupnpc-static PROPERTY FOLDER "external")
-if(MSVC)
-  set_property(TARGET libminiupnpc-static APPEND_STRING PROPERTY COMPILE_FLAGS " -wd4244 -wd4267")
-elseif(NOT MSVC)
-  set_property(TARGET libminiupnpc-static APPEND_STRING PROPERTY COMPILE_FLAGS " -Wno-undef -Wno-unused-result -Wno-unused-value")
-endif()
-
-set(UPNP_LIBRARIES "libminiupnpc-static" PARENT_SCOPE)
-
-find_package(Unbound)
+find_package(Unbound REQUIRED)
 
 if(NOT UNBOUND_INCLUDE_DIR OR STATIC)
   # NOTE: If STATIC is true, CMAKE_FIND_LIBRARY_SUFFIXES has been reordered.

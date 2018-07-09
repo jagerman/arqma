@@ -1,0 +1,13 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@ --buildsystem=cmake
+
+override_dh_auto_configure:
+	dh_auto_configure -- -DARCH=default -DSTATIC=OFF -DBUILD_SHARED_LIBS=ON -DCMAKE_INSTALL_RPATH=/usr/lib/$(DEB_HOST_MULTIARCH)/arqma
+
+override_dh_shlibdeps:
+	dh_shlibdeps -l/usr/lib/$(DEB_HOST_MULTIARCH)/arqma
+
+override_dh_strip:
+	dh_strip --no-ddebs

@@ -70,4 +70,5 @@ target_link_libraries(cryptonote_core
     ${Boost_THREAD_LIBRARY}
   PRIVATE
     ${Blocks}
+    ${CMAKE_THREAD_LIBS_INIT}
     ${EXTRA_LIBRARIES})

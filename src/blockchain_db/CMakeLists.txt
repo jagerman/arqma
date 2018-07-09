@@ -69,4 +69,5 @@ target_link_libraries(blockchain_db
     ${Boost_FILESYSTEM_LIBRARY}
     ${Boost_THREAD_LIBRARY}
   PRIVATE
+    ${CMAKE_THREAD_LIBS_INIT}
     ${EXTRA_LIBRARIES})

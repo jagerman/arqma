@@ -103,6 +103,12 @@ function (monero_add_library_with_deps)
   set_property(TARGET "${MONERO_ADD_LIBRARY_NAME}" PROPERTY FOLDER "libs")
   target_compile_definitions(${objlib}
     PRIVATE $<TARGET_PROPERTY:${MONERO_ADD_LIBRARY_NAME},INTERFACE_COMPILE_DEFINITIONS>)
+
+  set_target_properties("${MONERO_ADD_LIBRARY_NAME}" PROPERTIES VERSION 0)
+  install(TARGETS "${MONERO_ADD_LIBRARY_NAME}"
+    ARCHIVE DESTINATION lib/${CMAKE_LIBRARY_ARCHITECTURE}/arqma
+    LIBRARY DESTINATION lib/${CMAKE_LIBRARY_ARCHITECTURE}/arqma)
+
 endfunction ()
 
 include(Version)
