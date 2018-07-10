@@ -1,5 +1,5 @@
-arqma (0.1.2.5-1) unstable; urgency=medium
+arqma (0.1.2.5-1xenial1) xenial; urgency=medium
 
-  * Initial release.
+  * Initial xenial release.
 
- -- Jason Rhinelander <jason@imaginary.ca>  Mon, 09 Jul 2018 11:57:30 -0300
+ -- Jason Rhinelander <jason@imaginary.ca>  Tue, 10 Jul 2018 13:13:04 -0300
