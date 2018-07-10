@@ -2,7 +2,7 @@ Source: arqma
 Section: net
 Priority: optional
 Maintainer: Jason Rhinelander <jason@imaginary.ca>
-Build-Depends: debhelper (>= 11), cmake, g++, libboost-dev (>= 1.58), libboost-system-dev, libboost-filesystem-dev, libboost-thread-dev,
+Build-Depends: debhelper (>= 10), cmake, g++, libboost-dev (>= 1.58), libboost-system-dev, libboost-filesystem-dev, libboost-thread-dev,
  libboost-date-time-dev, libboost-chrono-dev, libboost-regex-dev, libboost-serialization-dev, libboost-program-options-dev,
  libboost-locale-dev, libunbound-dev (>= 1.4.16), libzmq3-dev, libsodium-dev, libminiupnpc-dev, libunwind8-dev,
  liblzma-dev, libreadline-dev, libldns-dev, libexpat1-dev, doxygen, graphviz, libpcsclite-dev, rapidjson-dev
