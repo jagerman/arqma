@@ -1,3 +1,9 @@
+arqma (0.1.2.6-2~bionic1) bionic; urgency=medium
+
+  * deb fixes: libarqma0; fix arqmad Suggests
+
+ -- Jason Rhinelander <jason@imaginary.ca>  Thu, 26 Jul 2018 18:10:25 -0300
+
 arqma (0.1.2.6-1bionic1) bionic; urgency=medium
 
   [ Jason Rhinelander ]
