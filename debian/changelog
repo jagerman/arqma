@@ -1,3 +1,16 @@
+arqma (0.1.2.6-1bionic1) bionic; urgency=medium
+
+  [ Jason Rhinelander ]
+  * Revert "Make version generation depend on current git HEAD"
+
+  [ moneromooo-monero ]
+  * wallet2: ensure outputs are processed only once
+
+  [ Jason Rhinelander ]
+  * Release v0.1.2.6
+
+ -- Jason Rhinelander <jason@imaginary.ca>  Thu, 26 Jul 2018 00:20:52 -0300
+
 arqma (0.1.2.5-1bionic1) bionic; urgency=medium
 
   * Initial bionic release.
