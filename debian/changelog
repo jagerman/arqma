@@ -1,3 +1,9 @@
+arqma (0.1.2.6-2~stretch1) stretch; urgency=medium
+
+  * deb fixes: libarqma0; fix arqmad Suggests
+
+ -- Jason Rhinelander <jason@imaginary.ca>  Thu, 26 Jul 2018 18:09:52 -0300
+
 arqma (0.1.2.6-1stretch1) stretch; urgency=medium
 
   [ Jason Rhinelander ]
