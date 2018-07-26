@@ -1,3 +1,10 @@
+arqma (0.1.2.6-2~xenial1) xenial; urgency=medium
+
+  * Fix arqmad suggests (utils -> tools)
+  * deb fixes: libarqma0; fix arqmad Suggests
+
+ -- Jason Rhinelander <jason@imaginary.ca>  Thu, 26 Jul 2018 18:12:01 -0300
+
 arqma (0.1.2.6-1xenial1) xenial; urgency=medium
 
   [ Jason Rhinelander ]
