@@ -9,7 +9,7 @@ Build-Depends: debhelper (>= 10), cmake, g++, libboost-dev (>= 1.58), libboost-s
 Standards-Version: 4.1.3
 Homepage: https://github.com/arqma/arqma
 
-Package: libarqma
+Package: libarqma0
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: ArQmA libraries
@@ -18,15 +18,15 @@ Description: ArQmA libraries
 
 Package: arqmad
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Suggests: arqma-blockchain-utils
+Depends: libarqma0 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
+Suggests: arqma-blockchain-tools
 Description: ArQmA node
  This package contains the arqma P2P node, arqmad, for synchronizing and
  supporting the ArQmA blockchain.
 
 Package: arqma-wallet
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: libarqma0 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
 Recommends: arqmad
 Description: ArQmA command-line and RPC wallets
  This package contains the arqma command-line and RPC interfaces to access a
@@ -42,7 +42,7 @@ Description: ArQmA command-line and RPC wallets
 
 Package: arqma-blockchain-tools
 Architecture: any
-Depends: arqmad, ${shlibs:Depends}, ${misc:Depends}
+Depends: arqmad (= ${binary:Version}), libarqma0 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
 Description: ArQmA blockchain utilities
  This contains the arqma-blockchain-* binaries for blockchain export/import and
  analysis.
