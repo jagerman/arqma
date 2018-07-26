@@ -19,7 +19,7 @@ Description: ArQmA libraries
 Package: arqmad
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Suggests: arqma-blockchain-utils
+Suggests: arqma-blockchain-tools
 Description: ArQmA node
  This package contains the arqma P2P node, arqmad, for synchronizing and
  supporting the ArQmA blockchain.
