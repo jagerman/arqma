@@ -1,3 +1,16 @@
+arqma (0.1.2.6-1xenial1) xenial; urgency=medium
+
+  [ Jason Rhinelander ]
+  * Revert "Make version generation depend on current git HEAD"
+
+  [ moneromooo-monero ]
+  * wallet2: ensure outputs are processed only once
+
+  [ Jason Rhinelander ]
+  * Release v0.1.2.6
+
+ -- Jason Rhinelander <jason@imaginary.ca>  Thu, 26 Jul 2018 00:21:50 -0300
+
 arqma (0.1.2.5-1xenial1) xenial; urgency=medium
 
   * Initial xenial release.
